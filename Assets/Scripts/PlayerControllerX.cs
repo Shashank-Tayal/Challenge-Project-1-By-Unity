@@ -1,17 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerControllerX : MonoBehaviour
 {
-    public float speed;
-    public float rotationSpeed;
+    private float speed = 25;
+    private float rotationSpeed = 100;
+    public InputAction moveAction;
     public float verticalInput;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        moveAction.Enable();
     }
 
     // Update is called once per frame
@@ -24,6 +24,6 @@ public class PlayerControllerX : MonoBehaviour
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
 
         // tilt the plane up/down based on up/down arrow keys
-        transform.Rotate(Vector3.right * rotationSpeed * Time.deltaTime);
+        transform.Rotate(Vector3.left * rotationSpeed * Time.deltaTime * verticalInput);
     }
 }
